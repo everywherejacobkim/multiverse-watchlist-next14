@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { FcRating } from "react-icons/fc";
+import { BiMovie } from "react-icons/bi";
 
 export interface AnimeProp {
   id: string;
@@ -9,6 +11,7 @@ export interface AnimeProp {
   kind: string;
   episodes: number;
   episodes_aired: number;
+  aired_on: string;
   score: string;
 }
 
@@ -22,7 +25,7 @@ function AnimeCard({ anime }: Prop) {
     <div className="max-w-sm rounded relative w-full">
       <div className="relative w-full h-[37vh]">
         <Image
-          src={anime.image.original}
+          src={`https://shikimori.one${anime.image.original}`}
           alt={anime.name}
           fill
           className="rounded-xl"
@@ -33,33 +36,26 @@ function AnimeCard({ anime }: Prop) {
           <h2 className="font-bold text-white text-xl line-clamp-1 w-full">
             {anime.name}
           </h2>
-          <div className="py-1 px-2 bg-[#161921] rounded-sm">
-            <p className="text-white text-sm font-bold capitalize">
+          <div className="py-1 px-1.5 bg-gray-200 rounded-sm">
+            <p className="text-black text-sm font-bold capitalize">
               {anime.kind}
             </p>
           </div>
         </div>
-        <div className="flex gap-4 items-center">
-          <div className="flex flex-row gap-2 items-center">
-            <Image
-              src="./episodes.svg"
-              alt="episodes"
-              width={20}
-              height={20}
-              className="object-contain"
-            />
+        <div className="flex gap-4 items-center justify-between">
+          <div className="flex gap-4 items-center">
+            <div className="flex items-center gap-1 text-white">
+              <BiMovie />
+              <p className="text-base font-bold">
+                {anime.aired_on}
+              </p>
+            </div>
             <p className="text-base text-white font-bold">
-              {anime.episodes || anime.episodes_aired}
+              {anime.episodes || anime.episodes_aired} Episode 
             </p>
           </div>
-          <div className="flex flex-row gap-2 items-center">
-            <Image
-              src="./star.svg"
-              alt="star"
-              width={18}
-              height={18}
-              className="object-contain"
-            />
+          <div className="flex gap-1 items-center">
+            <FcRating />
             <p className="text-base font-bold text-[#FFAD49]">{anime.score}</p>
           </div>
         </div>

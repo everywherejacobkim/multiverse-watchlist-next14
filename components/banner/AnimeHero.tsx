@@ -5,9 +5,9 @@ type Props = {}
 
 const AnimeHero = (props: Props) => {
   return (
-    <header className="flex lg:items-center gap-6 p-16 bg-gray-400">
+    <header className="flex lg:items-center gap-6 p-16 bg-[#f5e663]/70 rounded-lg">
     <div className="">
-      <h1 className="text-4xl lg:text-6xl text-white lg:max-w-lg font-bold leading-loose">
+      <h1 className="text-4xl lg:text-6xl text-[#051923] lg:max-w-lg font-bold leading-loose">
         Dive into Magical Universe of Anime Marvels
       </h1>
     </div>
