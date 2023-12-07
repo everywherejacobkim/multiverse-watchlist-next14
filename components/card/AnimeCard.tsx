@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FcRating } from "react-icons/fc";
 import { BiMovie } from "react-icons/bi";
 
@@ -23,14 +24,16 @@ interface Prop {
 function AnimeCard({ anime }: Prop) {
   return (
     <div className="max-w-sm rounded relative w-full">
-      <div className="relative w-full h-[37vh]">
-        <Image
-          src={`https://shikimori.one${anime.image.original}`}
-          alt={anime.name}
-          fill
-          className="rounded-xl"
-        />
-      </div>
+      <Link href={`https://shikimori.one${anime.url}`}>
+        <div className="relative w-full h-[37vh]">
+          <Image
+            src={`https://shikimori.one${anime.image.original}`}
+            alt={anime.name}
+            fill
+            className="rounded-xl"
+          />
+        </div>
+      </Link>
       <div className="py-4 flex flex-col gap-3">
         <div className="flex justify-between items-center gap-1">
           <h2 className="font-bold text-white text-xl line-clamp-1 w-full">

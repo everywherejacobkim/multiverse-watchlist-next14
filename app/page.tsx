@@ -6,7 +6,7 @@ import { fetchAnime } from "./action";
 
 async function Home() {
 
-  const data = await fetchAnime(1, 12);
+  const data = await fetchAnime(1, 8);
 
   return (
     <main className="sm:p-16 py-16 px-8 flex flex-col gap-10">
