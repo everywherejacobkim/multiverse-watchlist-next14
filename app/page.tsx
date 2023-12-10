@@ -1,7 +1,5 @@
-import AnimeCard, { AnimeProp } from "@/components/card/AnimeCard";
-import LoadMore from "@/components/loader/LoadMore";
-import { data } from "./_data";
 import AnimeHero from "@/components/banner/AnimeHero";
+import LoadMore from "@/components/loader/LoadMore";
 import { fetchAnime } from "./action";
 
 async function Home() {
@@ -13,9 +11,7 @@ async function Home() {
       <AnimeHero />
       <h2 className="text-3xl text-white font-bold">Explore Anime</h2>
       <section className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
-        {data.map((item: AnimeProp, index: number) => (
-          <AnimeCard key={item.id} anime={item} index={index} />
-        ))}
+        {data}
       </section>
       <LoadMore />
     </main>

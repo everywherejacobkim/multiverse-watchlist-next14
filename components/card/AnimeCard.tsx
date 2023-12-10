@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FcRating } from "react-icons/fc";
 import { BiMovie } from "react-icons/bi";
+import { MotionDiv } from "@/components/motion/MotionDiv";
 
 export interface AnimeProp {
   id: string;
@@ -14,6 +15,7 @@ export interface AnimeProp {
   episodes_aired: number;
   aired_on: string;
   score: string;
+  url: string;
 }
 
 interface Prop {
@@ -21,13 +23,29 @@ interface Prop {
   index: number;
 }
 
-function AnimeCard({ anime }: Prop) {
+const variants = {
+  hidden: {opacity: 0},
+  visible: {opacity: 1},
+}
+
+function AnimeCard({ anime, index }: Prop) {
   return (
-    <div className="max-w-sm rounded relative w-full">
-      <Link href={`https://shikimori.one${anime.url}`}>
+    <MotionDiv
+      className="max-w-sm rounded relative w-full"
+      variants={variants} 
+      initial="hidden"
+      animate="visible"
+      transition={{
+        delay: index * 0.25,
+        ease: "easeInOut",
+        duration: 0.5,
+      }} 
+      viewport={{ amount: 0 }}
+    >
+      <Link href={`https://shikimori.one${anime?.url}`}>
         <div className="relative w-full h-[37vh]">
           <Image
-            src={`https://shikimori.one${anime.image.original}`}
+            src={`https://shikimori.one${anime.image?.original}`}
             alt={anime.name}
             fill
             className="rounded-xl"
@@ -63,7 +81,7 @@ function AnimeCard({ anime }: Prop) {
           </div>
         </div>
       </div>
-    </div>
+    </MotionDiv>
   );
 }
 
