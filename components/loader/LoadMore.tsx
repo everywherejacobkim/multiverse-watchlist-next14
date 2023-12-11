@@ -10,7 +10,7 @@ let page = 2;
 export type AnimeCard = JSX.Element;
 
 function LoadMore() {
-  const [ data, setData] = useState<AnimeCard>([]);
+  const [ data, setData] = useState<AnimeCard[]>([]);
   const { ref, inView } = useInView();
 
   useEffect(() => {

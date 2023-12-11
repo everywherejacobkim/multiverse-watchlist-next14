@@ -1,8 +1,10 @@
+'use client';
+import * as React from 'react';
 import Image from "next/image";
-import Link from "next/link";
 import { FcRating } from "react-icons/fc";
 import { BiMovie } from "react-icons/bi";
 import { MotionDiv } from "@/components/motion/MotionDiv";
+import InfoDrawer from "@/components/drawer/InfoDrawer";
 
 export interface AnimeProp {
   id: string;
@@ -28,8 +30,17 @@ const variants = {
   visible: {opacity: 1},
 }
 
+type ToggleDrawerType = React.MouseEventHandler<HTMLButtonElement>;
+
 function AnimeCard({ anime, index }: Prop) {
+
+  const [openDrawer, setOpenDrawer] = React.useState(false);
+
+  const toggleDrawer: ToggleDrawerType = () => {
+    setOpenDrawer(!openDrawer);
+  };
   return (
+    <>
     <MotionDiv
       className="max-w-sm rounded relative w-full"
       variants={variants} 
@@ -42,16 +53,16 @@ function AnimeCard({ anime, index }: Prop) {
       }} 
       viewport={{ amount: 0 }}
     >
-      <Link href={`https://shikimori.one${anime?.url}`}>
-        <div className="relative w-full h-[37vh]">
-          <Image
-            src={`https://shikimori.one${anime.image?.original}`}
-            alt={anime.name}
+      <button className="relative w-full h-[37vh] cursor-pointer" onClick={toggleDrawer}>
+        <Image
+          src={`https://shikimori.one${anime.image?.original}`}
+          alt={anime.name}
             fill
-            className="rounded-xl"
-          />
-        </div>
-      </Link>
+            priority
+          sizes="(max-width: 300px)"
+          className="rounded-xl"
+        />
+      </button>
       <div className="py-4 flex flex-col gap-3">
         <div className="flex justify-between items-center gap-1">
           <h2 className="font-bold text-white text-xl line-clamp-1 w-full">
@@ -82,6 +93,8 @@ function AnimeCard({ anime, index }: Prop) {
         </div>
       </div>
     </MotionDiv>
+    {openDrawer && <InfoDrawer openDrawer={openDrawer} toggleDrawer={toggleDrawer} />}
+    </>
   );
 }
 
