@@ -11,6 +11,7 @@ export interface AnimeProp {
   name: string;
   image: {
     original: string;
+    x96: string;
   };
   kind: string;
   episodes: number;
@@ -93,7 +94,7 @@ function AnimeCard({ anime, index }: Prop) {
         </div>
       </div>
     </MotionDiv>
-    {openDrawer && <InfoDrawer openDrawer={openDrawer} toggleDrawer={toggleDrawer} />}
+    {openDrawer && <InfoDrawer openDrawer={openDrawer} toggleDrawer={toggleDrawer} anime={anime} />}
     </>
   );
 }
